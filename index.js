@@ -6,8 +6,9 @@ const bodyParser = require("body-parser");
 const fs = require("fs");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
-
+const jobRoutes = require("./routes/jobs");
 const authRoutes = require("./routes/auth");
+const authMiddleware = require("./middleware/auth");
 dotenv.config();
 const PORT = process.env.PORT;
 
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/jobs", authMiddleware, jobRoutes);
 app.get("/", (req, res) => {
     res.send("Hello World");
 });
