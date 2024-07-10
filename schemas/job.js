@@ -43,6 +43,11 @@ const JobSchema = new Schema({
     information: {
         type: String,
         required: true
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
     }
 
 })
