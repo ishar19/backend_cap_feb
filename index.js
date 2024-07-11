@@ -11,6 +11,11 @@ const authRoutes = require("./routes/auth");
 const authMiddleware = require("./middleware/auth");
 dotenv.config();
 const PORT = process.env.PORT;
+const cors = require("cors");
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}));
 
 // log every incoming request
 // store it in a file
